@@ -16,17 +16,16 @@
               <thead>
                 <tr class="text-white" style="background-color: #3bae9c">
                   <th scope="col" colspan="2" rowspan="2">HARI/ KELAS</th>
-                  <th scope="col" colspan="4">SENIN</th>
+                  <th scope="col" colspan="3">SENIN</th>
                 </tr>
                 <tr class="text-white" style="background-color: #3bae9c">
-                  <th colspan="4">XII RPL 2</th>
+                  <th colspan="3">XII RPL 2</th>
                 </tr>
                 <tr style="background-color: #7de2d1">
                   <th scope="row">JAM-KE</th>
                   <th>WAKTU</th>
                   <th>MAPEL</th>
                   <th>GURU</th>
-                  <th colspan="2">RUANG</th>
                 </tr>
               </thead>
               <tbody>
@@ -35,7 +34,6 @@
                   <td>07.15-08.00</td>
                   <td>PBO</td>
                   <td>PUGUH RISMADI</td>
-                  <td colspan="2" rowspan="9">23</td>
                 </tr>
                 <tr>
                   <td scope="row">2</td>
@@ -54,11 +52,6 @@
                   <td>09.25-10.00</td>
                   <td>PBO</td>
                   <td>PUGUH RISMADI</td>
-                </tr>
-                <tr style="background-color: #023436">
-                  <td scope="row" style="color: transparent">b</td>
-                  <th class="text-white">10.00-10.20</th>
-                  <th class="text-white" colspan="2">ISTIRAHAT</th>
                 </tr>
                 <tr>
                   <td scope="row">5</td>
@@ -94,17 +87,16 @@
               <thead>
                 <tr class="text-white" style="background-color: #3bae9c">
                   <th scope="col" colspan="2" rowspan="2">HARI/ KELAS</th>
-                  <th scope="col" colspan="4">SENIN</th>
+                  <th scope="col" colspan="3">SENIN</th>
                 </tr>
                 <tr class="text-white" style="background-color: #3bae9c">
-                  <th colspan="4">XII RPL 2</th>
+                  <th colspan="3">XII RPL 2</th>
                 </tr>
                 <tr style="background-color: #7de2d1">
                   <th scope="row">JAM-KE</th>
                   <th>WAKTU</th>
                   <th>MAPEL</th>
                   <th>GURU</th>
-                  <th colspan="2">RUANG</th>
                 </tr>
               </thead>
               <tbody>
@@ -113,7 +105,6 @@
                   <td>07.15-08.00</td>
                   <td>PBO</td>
                   <td>PUGUH RISMADI</td>
-                  <td colspan="2" rowspan="9">23</td>
                 </tr>
                 <tr>
                   <td scope="row">2</td>
@@ -132,11 +123,6 @@
                   <td>09.25-10.00</td>
                   <td>PBO</td>
                   <td>PUGUH RISMADI</td>
-                </tr>
-                <tr style="background-color: #023436">
-                  <td scope="row" style="color: transparent">b</td>
-                  <th class="text-white">10.00-10.20</th>
-                  <th class="text-white" colspan="2">ISTIRAHAT</th>
                 </tr>
                 <tr>
                   <td scope="row">5</td>
@@ -225,8 +211,13 @@ header {
 import { RouterLink, RouterView } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue';
 import Header from './components/Header.vue';
-import {onMounted} from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
+
+const kode_respon = ref()
+const message_kode = ref()
+const hari = ref()
+const agenda = ref([])  
 
 onMounted(() => {
   const inputRfid = document.querySelector('.input-rfid');
@@ -235,8 +226,15 @@ onMounted(() => {
     axios.post('http://127.0.0.1:8000/api/absen', {
       rfid: e.target.value
     }).then((response) => {
-      e.target.value = '';
       console.log(response)
+      kode_respon.value = response.data.kode_respon
+      hari.value = response.data.hari 
+      message_kode.value = response.data.message
+      agenda.value = response.data.agendas
+      console.log(kode_respon.value)
+      console.log(message_kode.value)
+      console.log(hari.value)
+      console.log(agenda.value)
     })
   })
 })
