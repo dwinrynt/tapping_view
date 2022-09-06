@@ -1,9 +1,10 @@
 <template>
     <div>
-        <video>
+        <video src="@/assets/hai.mp4" type="video/mp4" autoplay></video>
+        <!-- <video>
             <source src="@/assets/hai.mp4" type="video.mp4">
             <source src="@/assets/hai.ogg" type="video.ogg">
-        </video>
+        </video> -->
     </div>
 </template>
 
