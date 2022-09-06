@@ -1,10 +1,10 @@
 <template>
     <div>
-        <video src="@/assets/hai.mp4" type="video/mp4" autoplay></video>
-        <!-- <video>
-            <source src="@/assets/hai.mp4" type="video.mp4">
-            <source src="@/assets/hai.ogg" type="video.ogg">
-        </video> -->
+        <!-- <img alt="Vue logo" src="../assets/logo.svg"> -->
+        <video loop="true" autoplay="autoplay">
+            <source src="../assets/hai.mp4" type="video/mp4">
+            <source src="../assets/hai.ogg" type="video/ogg">
+        </video>
     </div>
 </template>
 
