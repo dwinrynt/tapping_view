@@ -112,10 +112,30 @@
     </div>
   </div>
 
-  <input type="text" name="" class="input-rfid" autofocus>
+  <div class="rfid">
+    <input type="text" name="" class="input-rfid" autofocus>
+    <div class="tiban">1</div>
+  </div>
 </template>
 
 <style scoped>
+.rfid {
+  margin-top: 5rem;
+}
+
+.input-rfid {
+  position: absolute;
+  margin-top: 5px;
+}
+
+.tiban {
+  background-color: white;
+  color: white;
+  width: 30vw;
+  height: 10vh;
+
+}
+
 .container {
   min-width: 100vw;
   min-height: 100vh;
