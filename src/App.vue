@@ -2,28 +2,36 @@
   <header>
     <Header />
   </header>
-  <Hai />
-  <div class="container1 p-0 mt-5" v-if="kode_respon == 1">
+  
+  <div class="container1 p-0 mt-5" v-if="kode_respon == 1 && show">
     <div class="isi">
       <div class="foto">
-        <img src="" alt="image">
+        <img :src="'http://127.0.0.1:8000' + siswa.profil" alt="image" v-if="siswa.profil"
+          style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;">
+        <img :src="'http://127.0.0.1:8000' + user.profil" alt="image" v-if="user.profil"
+          style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;">
       </div>
     </div>
     <div class="isi2">
-      <div class="data">
-        <p class="nama">Dwi Nuryanto</p>
-        <p class="npsn">20229232</p>
-        <p class="kelas">XII RPL 2</p>
-        <p class="jurusan">RPL</p>
+      <div class="data" v-if="role == 'siswa'">
+        <p class="nama">{{ siswa.name }}</p>
+        <p class="npsn">{{ siswa.npsn }}</p>
+        <p class="kelas">{{ kelas.nama }}</p>
+        <p class="jurusan">{{ siswa.kompetensi.kompetensi }}</p>
+      </div>
+      <div class="data" v-if="role == 'guru' || role == 'user'">
+        <p class="nama">{{ user.name }}</p>
+        <p class="npsn">{{ user.nip }}</p>
       </div>
     </div>
+
     <!-- table guru -->
-    <div class="container mt-5" style="min-width: 70vw;">
+    <div class="container mt-5" style="min-width: 70vw;" v-if="role == 'guru'">
       <table class="table table-bordered border-secondary text-center">
         <thead>
           <tr class="text-white" style="background-color: #3bae9c">
             <th scope="col" colspan="2" rowspan="2">HARI/ KELAS</th>
-            <th scope="col" colspan="3" rowspan="2" style="text-transform: capitalize;">Sabtu</th>
+            <th scope="col" colspan="3" rowspan="2" style="text-transform: capitalize;">{{ hari }}</th>
           </tr>
           <tr class="text-white" style="background-color: #3bae9c">
           </tr>
@@ -35,17 +43,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td scope="row">1</td>
-            <td>07.00-12.30</td>
-            <td>PBO</td>
-            <td style="text-transform: capitalize;">XII RPL 2</td>
+          <tr v-for="no in agendas.length">
+            <td scope="row">{{ no }}</td>
+            <td>{{ agendas[no - 1].jam_awal.split(':')[0] }}:{{ agendas[no - 1].jam_awal.split(':')[1] }}-{{ agendas[no
+                - 1].jam_akhir.split(':')[0]
+            }}:{{ agendas[no - 1].jam_akhir.split(':')[1] }}</td>
+            <td>{{ agendas[no - 1].mapel }}</td>
+            <td style="text-transform: capitalize;">{{ agendas[no - 1].nama_kelas }}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <!-- table siswa -->
-    <div class="container mt-5" style="min-width: 70vw;" v-if="kode_respon == 1">
+    <div class="container mt-5" style="min-width: 70vw;" v-if="role == 'siswa'">
       <table class="table table-bordered border-secondary text-center" v-if="agendas.length > 0">
         <thead>
           <tr class="text-white" style="background-color: #3bae9c">
@@ -53,7 +63,7 @@
             <th scope="col" colspan="3" style="text-transform: capitalize;">{{ hari }}</th>
           </tr>
           <tr class="text-white" style="background-color: #3bae9c">
-            <th colspan="3">{{ agendas[0].nama_kelas }}XII RPL 2</th>
+            <th colspan="3">{{ agendas[0].nama_kelas }}</th>
           </tr>
           <tr style="background-color: #7de2d1">
             <th scope="row">JAM-KE</th>
@@ -66,7 +76,9 @@
           <tr v-for="no in agendas.length">
             <!-- {{ agendas[no - 1].jam_awal }} -->
             <td scope="row">{{ no }}</td>
-            <td>{{ agendas[no - 1].jam_awal.split(':')[0] }}:{{ agendas[no - 1].jam_awal.split(':')[1] }}-{{ agendas[no - 1].jam_akhir.split(':')[0] }}:{{ agendas[no - 1].jam_akhir.split(':')[1] }}</td>
+            <td>{{ agendas[no - 1].jam_awal.split(':')[0] }}:{{ agendas[no - 1].jam_awal.split(':')[1] }}-{{ agendas[no
+                - 1].jam_akhir.split(':')[0]
+            }}:{{ agendas[no - 1].jam_akhir.split(':')[1] }}</td>
             <td>{{ agendas[no - 1].mapel }}</td>
             <td style="text-transform: capitalize;">{{ agendas[no - 1].guru }}</td>
           </tr>
@@ -74,46 +86,32 @@
       </table>
     </div>
   </div>
-  
-  <div class="container2 p-0 mt-5" v-if="kode_respon == 2">
-    <div class="isi">
-      <div class="foto">
-        <img src="" alt="image">
-      </div>
-    </div>
-    <div class="isi2">
-      <div class="data">
-        <p class="nama">Dwi Nuryanto</p>
-        <p class="nip">20229232</p>
-      </div>
-    </div>
+
+  <div class="container2 p-0 mt-5 container-pulang" :style="(kode_respon == 2 && show) ? 'display:block;' : 'display:none;'">
+    <!-- v-if="kode_respon == 2" -->
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
-      <div style="width:30%; height:0; padding-bottom:30%; position:relative;">
-        <Hai />
-        <h3 class="text-center">Hati-hati di jalan!</h3>
+      <div style="width:25rem; height:0; padding-bottom:30%; position:relative;">
+        <video loop="true" autoplay="autoplay" class="gif-pulang" style="width: 100%;">
+            <source src="@/assets/hai.mp4" type="video/mp4">
+            <source src="@/assets/hai.ogg" type="video/ogg">
+        </video>
+        <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Hati-h datii jalan!</h3>
       </div>
     </div>
   </div>
 
-  <div class="container2 p-0 mt-5" v-if="kode_respon == 3">
-    <div class="isi">
-      <div class="foto">
-        <img src="" alt="image">
-      </div>
-    </div>
-    <div class="isi2">
-      <div class="data">
-        <p class="nama">Dwi Nuryanto</p>
-        <p class="npsn">20229232</p>
-        <p class="kelas">XII RPL 2</p>
-        <p class="jurusan">RPL</p>
-      </div>
-    </div>
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 3 && show) ? 'display:block;' : 'display:none;'" >
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
-      <video src=""></video>
+      <div style="width: 25rem;">
+        <video loop="true" autoplay="autoplay" class="gif-angry" style="width: 100%;">
+              <source src="@/assets/angry.mp4" type="video/mp4">
+              <source src="@/assets/angry.ogg" type="video/ogg">
+          </video>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Anda sudah absen masuk ataupun pulang</h3>
+      </div>
     </div>
   </div>
-  
+
   <input type="text" name="" class="input-rfid" autofocus>
 </template>
 
@@ -151,16 +149,15 @@ header {
   font-weight: 500;
 }
 
-.npsn, .kelas, .jurusan {
+.npsn,
+.kelas,
+.jurusan {
   font-size: 30px;
 }
 
 .foto {
-  width: 300px;
-  height: 400px;
   display: flex;
   justify-content: center;
-  border: 1px solid black;
 }
 
 #carouselExampleControls {
@@ -174,7 +171,7 @@ header {
 }
 
 .input-rfid {
-  z-index: -1;
+  /* z-index: -1; */
 }
 </style>
 
@@ -185,41 +182,98 @@ import Header from './components/Header.vue';
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
 import Hai from './components/Hai.vue';
-import Hai1 from './components/Hai.vue';
 
 const kode_respon = ref()
-const message_kode = ref()
 const hari = ref()
 const agendas = [];
 const siswa = ref([]);
+const user = ref([]);
+const message = ref();
 const role = ref();
+const kelas = ref();
+const kompetensi = ref();
+let detik = 0;
+let show = ref(false);
+
+const hitungDetik = function () {
+  detik++;
+  if (detik == 15) {
+    show.value = false;
+    detik = 0;
+  } else if(detik <= 15 && show.value) {
+    setTimeout(() => {
+      hitungDetik();
+    }, 1000);
+  }
+};
 
 onMounted(() => {
+  // kode_respon.value = 2;
+  // show.value = true
+  // console.log(document.querySelector('#text-pulang'))
+ 
   const inputRfid = document.querySelector('.input-rfid');
   inputRfid.addEventListener('change', function (e) {
-    console.log(e.target.value)
-    axios.post('http://127.0.0.1:8000/api/absen', {
+    if (detik <= 15) {
+      detik = 0;
+      show.value = false;
+          fetch(e);
+      }else{
+        fetch(e);
+      }
+  })
+
+  const fetch = function(e){
+  axios.post('http://127.0.0.1:8000/api/absen', {
       rfid: e.target.value
-    }).then((response) => {
-      // console.log(response)
+    }).then((response) => { 
+      console.log(response)
+      if (!show.value) {
+        show.value = true;
+        hitungDetik();
+      }
       kode_respon.value = response.data.kode_respon
-      hari.value = response.data.hari
-      message_kode.value = response.data.message
-      response.data.agendas.forEach(e => {
-        agendas.push(e);
-      });
+      message.value = response.data.message
+      
+      // data user
+      
       if (kode_respon.value == 1) {
         if (response.data.siswa) {
+          hari.value = response.data.hari;
           siswa.value = response.data.siswa;
           role.value = 'siswa';
-        }else{
-          role.value = 'user';
+          kelas.value = response.data.kelas;
+          kompetensi.value = response.data.kompetensi;
+          if (response.data.agendas) {
+            response.data.agendas.forEach(e => {
+              agendas.push(e);
+            });
+          }
+        } else {
+          if (response.data.hari) {
+            role.value = 'guru'
+            hari.value = response.data.hari;
+            if (response.data.agendas) {
+              response.data.agendas.forEach(e => {
+                agendas.push(e);
+              });
+            }
+
+          } else {
+            role.value = 'user'
+          }
+          user.value = response.data.user;
         }
+      }else if(kode_respon.value == 2){
+        const textPulang = document.querySelector('.text-pulang-h3-nih');
+        textPulang.innerHTML = 'Hati hati dijalan ' + response.data.user.name;
+        document.querySelector('.gif-pulang').play();
+      }else if(kode_respon.value == 3){
+        document.querySelector('.gif-angry').play();
       }
-      // agendas.push(response.data.agendas)
-      // console.log(response.data.agendas)
-      console.log(agendas)
+      
+      inputRfid.value = '';
     })
-  })
+} 
 })
 </script>
