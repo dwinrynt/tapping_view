@@ -1,8 +1,13 @@
 <template>
+  
   <header>
     <Header />
   </header>
-  {{ kode_respon }}
+
+  <div class="alert alert-success m-4" role="alert" v-if="kode_respon == 4 && show">
+    Rfid sudah tidak aktif
+  </div>
+
   <div class="isi" v-if="!kode_respon && !show">
     <div class="foto">
       <img src="@/assets/contactless-payment-credit-card-hand-tap-pay-wave-logo-vector-wireless-nfc-pass-icon-161259873-38930.png" alt="image" style="width: 500px;height: 500px;object-fit: cover;margin-top: 50px;">
@@ -33,7 +38,7 @@
 
     <!-- table guru -->
     <div class="container mt-5" style="min-width: 70vw;" v-if="role == 'guru'">
-      <table class="table table-bordered border-secondary text-center">
+      <table class="table table-bordered border-secondary text-center" v-if="agendas.length > 0">
         <thead>
           <tr class="text-white" style="background-color: #3bae9c">
             <th scope="col" colspan="2" rowspan="2">HARI/ KELAS</th>
@@ -120,7 +125,7 @@
 
   <div class="rfid">
     <input type="text" name="" class="input-rfid" autofocus>
-    <div class="tiban">1</div>
+    <div class="tiban"></div>
   </div>
 </template>
 
@@ -195,10 +200,6 @@ header {
 .carousel-item {
   padding: 50px;
 }
-
-.input-rfid {
-  /* z-index: -1; */
-}
 </style>
 
 <script setup>
@@ -226,6 +227,7 @@ const hitungDetik = function () {
   if (detik == 15) {
     show.value = false;
     detik = 0;
+    kode_respon.value = '';
   } else if(detik <= 15 && show.value) {
     setTimeout(() => {
       hitungDetik();
@@ -241,9 +243,9 @@ onMounted(() => {
   const inputRfid = document.querySelector('.input-rfid');
   inputRfid.addEventListener('change', function (e) {
     if (detik <= 15) {
-      detik = 0;
-      show.value = false;
-          fetch(e);
+        detik = 0;
+        show.value = false;
+        fetch(e);
       }else{
         fetch(e);
       }
@@ -253,7 +255,6 @@ onMounted(() => {
   axios.post('http://127.0.0.1:8000/api/absen', {
       rfid: e.target.value
     }).then((response) => { 
-      console.log(response)
       if (!show.value) {
         show.value = true;
         hitungDetik();
