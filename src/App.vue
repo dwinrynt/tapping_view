@@ -2,6 +2,12 @@
   <header>
     <Header />
   </header>
+  {{ kode_respon }}
+  <div class="isi" v-if="!kode_respon && !show">
+    <div class="foto">
+      <img src="@/assets/contactless-payment-credit-card-hand-tap-pay-wave-logo-vector-wireless-nfc-pass-icon-161259873-38930.png" alt="image" style="width: 500px;height: 500px;object-fit: cover;margin-top: 50px;">
+    </div>
+  </div>
   
   <div class="container1 p-0 mt-5" v-if="kode_respon == 1 && show">
     <div class="isi">
@@ -107,7 +113,7 @@
               <source src="@/assets/angry.mp4" type="video/mp4">
               <source src="@/assets/angry.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Anda sudah absen masuk ataupun pulang</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Anda sudah absen masuk ataupun pulang, jangan iseng tapping terus menerus!!!</h3>
       </div>
     </div>
   </div>
@@ -131,7 +137,7 @@
 .tiban {
   background-color: white;
   color: white;
-  width: 30vw;
+  width: 100vw;
   height: 10vh;
 
 }
