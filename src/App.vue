@@ -1,7 +1,12 @@
 <template>
+  
   <header>
     <Header />
   </header>
+
+  <div class="alert alert-success m-4" role="alert" v-if="kode_respon == 4 && show">
+    Rfid sudah tidak aktif
+  </div>
   
   <div class="container1 p-0 mt-5" v-if="kode_respon == 1 && show">
     <div class="isi">
@@ -114,7 +119,7 @@
 
   <div class="rfid">
     <input type="text" name="" class="input-rfid" autofocus>
-    <div class="tiban">1</div>
+    <div class="tiban"></div>
   </div>
 </template>
 
@@ -189,10 +194,6 @@ header {
 .carousel-item {
   padding: 50px;
 }
-
-.input-rfid {
-  /* z-index: -1; */
-}
 </style>
 
 <script setup>
@@ -220,6 +221,7 @@ const hitungDetik = function () {
   if (detik == 15) {
     show.value = false;
     detik = 0;
+    kode_respon.value = '';
   } else if(detik <= 15 && show.value) {
     setTimeout(() => {
       hitungDetik();
@@ -235,9 +237,9 @@ onMounted(() => {
   const inputRfid = document.querySelector('.input-rfid');
   inputRfid.addEventListener('change', function (e) {
     if (detik <= 15) {
-      detik = 0;
-      show.value = false;
-          fetch(e);
+        detik = 0;
+        show.value = false;
+        fetch(e);
       }else{
         fetch(e);
       }
@@ -247,7 +249,6 @@ onMounted(() => {
   axios.post('http://127.0.0.1:8000/api/absen', {
       rfid: e.target.value
     }).then((response) => { 
-      console.log(response)
       if (!show.value) {
         show.value = true;
         hitungDetik();
