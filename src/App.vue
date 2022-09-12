@@ -17,10 +17,18 @@
   <div class="container1 p-0 mt-5" v-if="kode_respon == 1 && show">
     <div class="isi">
       <div class="foto">
-        <img :src="'http://127.0.0.1:8000' + siswa.profil" alt="image" v-if="siswa.profil"
-          style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;">
-        <img :src="'http://127.0.0.1:8000' + user.profil" alt="image" v-if="user.profil"
-          style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;">
+        <div v-if="siswa.profil">
+          <img :src="'http://127.0.0.1:8000' + siswa.profil" alt="image" 
+            style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;" v-if="siswa.profil == '/img/profil.png'">
+          <img :src="'http://127.0.0.1:8000/storage/' + siswa.profil" alt="image" 
+            style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;" v-else>
+        </div>
+        <div v-if="user.profil">
+          <img :src="'http://127.0.0.1:8000' + user.profil" alt="image" 
+            style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;" v-if="user.profil == '/img/profil.png'">
+          <img :src="'http://127.0.0.1:8000/storage/' + user.profil" alt="image" 
+            style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;" v-else>
+        </div>
       </div>
     </div>
     <div class="isi2">
@@ -255,6 +263,7 @@ onMounted(() => {
   axios.post('http://127.0.0.1:8000/api/absen', {
       rfid: e.target.value
     }).then((response) => { 
+      console.log(response)
       if (!show.value) {
         show.value = true;
         hitungDetik();
