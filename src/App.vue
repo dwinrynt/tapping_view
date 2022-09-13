@@ -110,7 +110,7 @@
       </div>
     </div>
   </div>
-
+  
   <div class="container2 p-0 mt-5" :style="(kode_respon == 3 && show) ? 'display:block;' : 'display:none;'" >
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width: 25rem;">
@@ -119,6 +119,30 @@
               <source src="@/assets/angry.ogg" type="video/ogg">
           </video>
           <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Anda sudah absen masuk ataupun pulang, jangan iseng tapping terus menerus!!!</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 4 && show) ? 'display:block;' : 'display:none;'" >
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
+      <div style="width: 25rem;">
+        <video loop="true" autoplay="autoplay" class="gif-telat" style="width: 100%;">
+              <source src="@/assets/telat.mp4" type="video/mp4">
+              <source src="@/assets/telat.ogg" type="video/ogg">
+          </video>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kamu terlambat. Silahkan lapor ke guru piket untuk data absensi kamu hari ini. Jangan terlambat lagi lain kali yaa!</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 5 && show) ? 'display:block;' : 'display:none;'" >
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
+      <div style="width: 25rem;">
+        <video loop="true" autoplay="autoplay" class="gif-telat" style="width: 100%;">
+              <source src="@/assets/telat.mp4" type="video/mp4">
+              <source src="@/assets/telat.ogg" type="video/ogg">
+          </video>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kamu terlambat. Silahkan lapor ke guru piket untuk data absensi kamu hari ini. Jangan terlambat lagi lain kali yaa!</h3>
       </div>
     </div>
   </div>
