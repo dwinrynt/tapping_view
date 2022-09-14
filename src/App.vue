@@ -4,7 +4,7 @@
     <Header />
   </header>
 
-  <div class="alert alert-success m-4" role="alert" v-if="kode_respon == 4 && show">
+  <div class="alert alert-success m-4" role="alert" v-if="kode_respon == 7 && show">
     Rfid sudah tidak aktif
   </div>
 
