@@ -4,7 +4,7 @@
     <Header />
   </header>
 
-  <div class="alert alert-success m-4" role="alert" v-if="kode_respon == 4 && show">
+  <div class="alert alert-success m-4" role="alert" v-if="kode_respon == 7 && show">
     Rfid sudah tidak aktif
   </div>
 
@@ -155,6 +155,18 @@
     </div>
   </div>
 
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 6 && show) ? 'display:block;' : 'display:none;'" >
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
+      <div style="width: 25rem;">
+        <video loop="true" autoplay="autoplay" class="gif-telat" style="width: 100%;">
+              <source src="@/assets/telat.mp4" type="video/mp4">
+              <source src="@/assets/telat.ogg" type="video/ogg">
+          </video>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, data waktu presensi belum tersedia. Silahkan lapor ke guru piket!</h3>
+      </div>
+    </div>
+  </div>
+
   <div class="rfid">
     <input type="text" name="" class="input-rfid" autofocus>
     <div class="tiban"></div>
@@ -240,7 +252,6 @@ import HelloWorld from './components/HelloWorld.vue';
 import Header from './components/Header.vue';
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
-import Hai from './components/Hai.vue';
 
 const kode_respon = ref()
 const hari = ref()
