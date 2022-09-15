@@ -150,7 +150,7 @@
               <source src="@/assets/telat.mp4" type="video/mp4">
               <source src="@/assets/telat.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kamu terlambat. Silahkan lapor ke guru piket untuk data absensi kamu hari ini. Jangan terlambat lagi lain kali yaa!</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Belum Pulang</h3>
       </div>
     </div>
   </div>
@@ -162,7 +162,7 @@
               <source src="@/assets/telat.mp4" type="video/mp4">
               <source src="@/assets/telat.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, data waktu presensi belum tersedia. Silahkan lapor ke guru piket!</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Belum ada jeda waktu</h3>
       </div>
     </div>
   </div>
