@@ -70,7 +70,7 @@
       </table>
     </div>
     <!-- table siswa -->
-    <div class="container mt-5" style="min-width: 70vw;" v-if="role == 'siswa'">
+    <div class="container mt-5" style="min-width: 70vw;" v-else-if="role == 'siswa'">
       <table class="table table-bordered border-secondary text-center" v-if="agendas.length > 0">
         <thead>
           <tr class="text-white" style="background-color: #3bae9c">
@@ -96,6 +96,32 @@
             }}:{{ agendas[no - 1].jam_akhir.split(':')[1] }}</td>
             <td>{{ agendas[no - 1].mapel }}</td>
             <td style="text-transform: capitalize;">{{ agendas[no - 1].guru }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="container mt-5" style="min-width: 70vw;" v-else>
+      <table class="table table-bordered border-secondary text-center" v-if="agendas.length > 0">
+        <thead>
+          <tr class="text-white" style="background-color: #3bae9c">
+            <th scope="col" colspan="2" rowspan="2">HARI/ KELAS</th>
+            <th scope="col" colspan="3" style="text-transform: capitalize;">{{ hari }}</th>
+          </tr>
+          <tr style="background-color: #7de2d1">
+            <th scope="row">JAM-KE</th>
+            <th>WAKTU</th>
+            <th>Aktifitas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="no in agendas.length">
+            <!-- {{ agendas[no - 1].jam_awal }} -->
+            <td scope="row">{{ no }}</td>
+            <td>{{ agendas[no - 1].jam_awal.split(':')[0] }}:{{ agendas[no - 1].jam_awal.split(':')[1] }}-{{ agendas[no
+                - 1].jam_akhir.split(':')[0]
+            }}:{{ agendas[no - 1].jam_akhir.split(':')[1] }}</td>
+            <td>{{ agendas[no - 1].other }}</td>
           </tr>
         </tbody>
       </table>
@@ -329,8 +355,8 @@ onMounted(() => {
             });
           }
         } else {
+          role.value = response.data.role;
           if (response.data.hari) {
-            role.value = 'guru'
             hari.value = response.data.hari;
             if (response.data.agendas) {
               response.data.agendas.forEach(e => {
