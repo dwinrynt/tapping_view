@@ -4,10 +4,6 @@
     <Header />
   </header>
 
-  <div class="alert alert-success m-4" role="alert" v-if="kode_respon == 7 && show">
-    Rfid sudah tidak aktif
-  </div>
-
   <div class="isi" v-if="!kode_respon && !show">
     <div class="foto">
       <img src="@/assets/contactless-payment-credit-card-hand-tap-pay-wave-logo-vector-wireless-nfc-pass-icon-161259873-38930.png" alt="image" style="width: 500px;height: 500px;object-fit: cover;margin-top: 50px;">
@@ -114,7 +110,7 @@
             <source src="@/assets/hai.mp4" type="video/mp4">
             <source src="@/assets/hai.ogg" type="video/ogg">
         </video>
-        <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Hati-h datii jalan!</h3>
+        <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Hati-hati di jalan!</h3>
       </div>
     </div>
   </div>
@@ -126,7 +122,7 @@
               <source src="@/assets/angry.mp4" type="video/mp4">
               <source src="@/assets/angry.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Anda sudah absen masuk ataupun pulang, jangan iseng tapping terus menerus!!!</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Kamu sudah absen masuk ataupun pulang, jangan iseng tapping terus menerus yaa!!!</h3>
       </div>
     </div>
   </div>
@@ -146,11 +142,11 @@
   <div class="container2 p-0 mt-5" :style="(kode_respon == 5 && show) ? 'display:block;' : 'display:none;'" >
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width: 25rem;">
-        <video loop="true" autoplay="autoplay" class="gif-telat" style="width: 100%;">
-              <source src="@/assets/telat.mp4" type="video/mp4">
-              <source src="@/assets/telat.ogg" type="video/ogg">
+        <video loop="true" autoplay="autoplay" class="gif-belumPulang" style="width: 100%;">
+              <source src="@/assets/belumPulang.mp4" type="video/mp4">
+              <source src="@/assets/belumPulang.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Belum Pulang</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Sekarang belum waktunya pulang, silahkan tetap berada di area sekolah sampai waktu pulang tiba yaa!</h3>
       </div>
     </div>
   </div>
@@ -158,11 +154,23 @@
   <div class="container2 p-0 mt-5" :style="(kode_respon == 6 && show) ? 'display:block;' : 'display:none;'" >
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width: 25rem;">
-        <video loop="true" autoplay="autoplay" class="gif-telat" style="width: 100%;">
+        <video loop="true" autoplay="autoplay" class="gif-waktu-presensi" style="width: 100%;">
               <source src="@/assets/telat.mp4" type="video/mp4">
               <source src="@/assets/telat.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Belum ada jeda waktu</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, waktu presensi belum tersedia. Silahkan lapor ke guru piket.</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 7 && show) ? 'display:block;' : 'display:none;'" >
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
+      <div style="width: 25rem;">
+        <video loop="true" autoplay="autoplay" class="gif-rfid-nonaktif" style="width: 100%;">
+              <source src="@/assets/telat.mp4" type="video/mp4">
+              <source src="@/assets/telat.ogg" type="video/ogg">
+          </video>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi anda tidak aktif. Silahkan lapor ke guru piket.</h3>
       </div>
     </div>
   </div>
@@ -341,6 +349,14 @@ onMounted(() => {
         document.querySelector('.gif-pulang').play();
       }else if(kode_respon.value == 3){
         document.querySelector('.gif-angry').play();
+      }else if(kode_respon.value == 4){
+        document.querySelector('.gif-telat').play();
+      }else if(kode_respon.value == 5){
+        document.querySelector('.gif-belumPulang').play();
+      }else if(kode_respon.value == 6){
+        document.querySelector('.gif-waktu-presensi').play();
+      }else if(kode_respon.value == 7){
+        document.querySelector('.gif-rfid-nonaktif').play();
       }
       
       inputRfid.value = '';
