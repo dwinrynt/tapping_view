@@ -184,7 +184,7 @@
               <source src="@/assets/telat.mp4" type="video/mp4">
               <source src="@/assets/telat.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, waktu presensi belum tersedia. Silahkan lapor ke guru piket.</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, agenda tidak tersedia. Silahkan lapor ke guru piket.</h3>
       </div>
     </div>
   </div>
@@ -197,6 +197,30 @@
               <source src="@/assets/telat.ogg" type="video/ogg">
           </video>
           <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi anda tidak aktif. Silahkan lapor ke guru piket.</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 8 && show) ? 'display:block;' : 'display:none;'" >
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
+      <div style="width: 25rem;">
+        <video loop="true" autoplay="autoplay" class="gif-rfid-notFound" style="width: 100%;">
+              <source src="@/assets/telat.mp4" type="video/mp4">
+              <source src="@/assets/telat.ogg" type="video/ogg">
+          </video>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi tidak ditemukan. Silahkan lapor ke guru piket.</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 9 && show) ? 'display:block;' : 'display:none;'" >
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
+      <div style="width: 25rem;">
+        <video loop="true" autoplay="autoplay" class="gif-rfid-nonaktif" style="width: 100%;">
+              <source src="@/assets/telat.mp4" type="video/mp4">
+              <source src="@/assets/telat.ogg" type="video/ogg">
+          </video>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Tidak ada kegiatan disekolah pada hari minggu. Silahkan nikmati waktu liburmu yaa!</h3>
       </div>
     </div>
   </div>
@@ -382,6 +406,10 @@ onMounted(() => {
       }else if(kode_respon.value == 6){
         document.querySelector('.gif-waktu-presensi').play();
       }else if(kode_respon.value == 7){
+        document.querySelector('.gif-rfid-nonaktif').play();
+      }else if(kode_respon.value == 8){
+        document.querySelector('.gif-rfid-notFound').play();
+      }else if(kode_respon.value == 9){
         document.querySelector('.gif-rfid-nonaktif').play();
       }
       
