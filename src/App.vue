@@ -5,8 +5,9 @@
   </header>
 
   <div class="isi" v-if="!kode_respon && !show">
+    <div class="text"><h3>Silahkan Tempelkan Kartu Smart Presensi Anda</h3></div>
     <div class="foto">
-      <img src="@/assets/contactless-payment-credit-card-hand-tap-pay-wave-logo-vector-wireless-nfc-pass-icon-161259873-38930.png" alt="image" style="width: 500px;height: 500px;object-fit: cover;margin-top: 50px;">
+      <img src="@/assets/tap-card-logo.png" alt="image" class="tap-card">
     </div>
   </div>
   
@@ -27,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div class="isi2">
+    <!-- <div class="isi2">
       <div class="data" v-if="role == 'siswa'">
         <p class="nama">{{ siswa.name }}</p>
         <p class="npsn">{{ siswa.npsn }}</p>
@@ -38,7 +39,7 @@
         <p class="nama">{{ user.name }}</p>
         <p class="npsn">{{ user.nip }}</p>
       </div>
-    </div>
+    </div> -->
 
     <!-- table guru -->
     <div class="container mt-5" style="min-width: 70vw;" v-if="role == 'guru'">
@@ -130,9 +131,9 @@
 
   <div class="container2 p-0 mt-5 container-pulang" :style="(kode_respon == 2 && show) ? 'display:block;' : 'display:none;'">
     <!-- v-if="kode_respon == 2" -->
-    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
-      <div style="width:25rem; height:0; padding-bottom:30%; position:relative;">
-        <video loop="true" autoplay="autoplay" class="gif-pulang" style="width: 100%;">
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center;">
+      <div style="width: 50rem; text-align: center; height:0; padding-bottom:30%; position:relative;">
+        <video loop="true" autoplay="autoplay" class="gif-pulang" style="width: 20rem;">
             <source src="@/assets/hai.mp4" type="video/mp4">
             <source src="@/assets/hai.ogg" type="video/ogg">
         </video>
@@ -142,9 +143,9 @@
   </div>
   
   <div class="container2 p-0 mt-5" :style="(kode_respon == 3 && show) ? 'display:block;' : 'display:none;'" >
-    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
-      <div style="width: 25rem;">
-        <video loop="true" autoplay="autoplay" class="gif-angry" style="width: 100%;">
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center;">
+      <div style="width: 50rem; text-align: center;">
+        <video loop="true" autoplay="autoplay" class="gif-angry" style="width: 20rem;">
               <source src="@/assets/angry.mp4" type="video/mp4">
               <source src="@/assets/angry.ogg" type="video/ogg">
           </video>
@@ -154,21 +155,21 @@
   </div>
 
   <div class="container2 p-0 mt-5" :style="(kode_respon == 4 && show) ? 'display:block;' : 'display:none;'" >
-    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
-      <div style="width: 25rem;">
-        <video loop="true" autoplay="autoplay" class="gif-telat" style="width: 100%;">
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center;">
+      <div style="width: 50rem; text-align: center;">
+        <video loop="true" autoplay="autoplay" class="gif-telat" style="width: 20rem;">
               <source src="@/assets/telat.mp4" type="video/mp4">
               <source src="@/assets/telat.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kamu terlambat. Silahkan lapor ke guru piket untuk data absensi kamu hari ini. Jangan terlambat lagi lain kali yaa!</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kamu terlambat. <br> Silahkan lapor ke guru piket untuk data absensi kamu hari ini. Jangan terlambat lagi lain kali yaa!</h3>
       </div>
     </div>
   </div>
 
   <div class="container2 p-0 mt-5" :style="(kode_respon == 5 && show) ? 'display:block;' : 'display:none;'" >
-    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
-      <div style="width: 25rem;">
-        <video loop="true" autoplay="autoplay" class="gif-belumPulang" style="width: 100%;">
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center;">
+      <div style="width: 50rem; text-align: center;">
+        <video loop="true" autoplay="autoplay" class="gif-belumPulang" style="width: 20rem;">
               <source src="@/assets/belumPulang.mp4" type="video/mp4">
               <source src="@/assets/belumPulang.ogg" type="video/ogg">
           </video>
@@ -178,56 +179,56 @@
   </div>
 
   <div class="container2 p-0 mt-5" :style="(kode_respon == 6 && show) ? 'display:block;' : 'display:none;'" >
-    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
-      <div style="width: 25rem;">
-        <video loop="true" autoplay="autoplay" class="gif-waktu-presensi" style="width: 100%;">
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center;">
+      <div style="width: 50rem; text-align: center;">
+        <video loop="true" autoplay="autoplay" class="gif-waktu-presensi" style="width: 20rem">
               <source src="@/assets/telat.mp4" type="video/mp4">
               <source src="@/assets/telat.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, agenda tidak tersedia. Silahkan lapor ke guru piket.</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, agenda tidak tersedia. <br> Silahkan lapor ke guru piket.</h3>
       </div>
     </div>
   </div>
 
   <div class="container2 p-0 mt-5" :style="(kode_respon == 7 && show) ? 'display:block;' : 'display:none;'" >
-    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
-      <div style="width: 25rem;">
-        <video loop="true" autoplay="autoplay" class="gif-rfid-nonaktif" style="width: 100%;">
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center;">
+      <div style="width: 50rem; text-align: center;">
+        <video loop="true" autoplay="autoplay" class="gif-rfid-nonaktif" style="width: 20rem;">
               <source src="@/assets/telat.mp4" type="video/mp4">
               <source src="@/assets/telat.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi anda tidak aktif. Silahkan lapor ke guru piket.</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi anda tidak aktif. <br> Silahkan lapor ke guru piket.</h3>
       </div>
     </div>
   </div>
 
   <div class="container2 p-0 mt-5" :style="(kode_respon == 8 && show) ? 'display:block;' : 'display:none;'" >
-    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
-      <div style="width: 25rem;">
-        <video loop="true" autoplay="autoplay" class="gif-rfid-notFound" style="width: 100%;">
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center;">
+      <div style="width: 50rem; text-align: center;">
+        <video loop="true" autoplay="autoplay" class="gif-rfid-notFound" style="width: 20rem;">
               <source src="@/assets/telat.mp4" type="video/mp4">
               <source src="@/assets/telat.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi tidak ditemukan. Silahkan lapor ke guru piket.</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi tidak ditemukan. <br> Silahkan lapor ke guru piket.</h3>
       </div>
     </div>
   </div>
 
   <div class="container2 p-0 mt-5" :style="(kode_respon == 9 && show) ? 'display:block;' : 'display:none;'" >
-    <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
-      <div style="width: 25rem;">
-        <video loop="true" autoplay="autoplay" class="gif-rfid-nonaktif" style="width: 100%;">
+    <div class="container" style="min-width: 70vw; display: flex; justify-content: center;">
+      <div style="width: 50rem; text-align: center;">
+        <video loop="true" autoplay="autoplay" class="gif-rfid-nonaktif" style="width: 20rem;">
               <source src="@/assets/telat.mp4" type="video/mp4">
               <source src="@/assets/telat.ogg" type="video/ogg">
           </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Tidak ada kegiatan disekolah pada hari minggu. Silahkan nikmati waktu liburmu yaa!</h3>
+          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Tidak ada kegiatan disekolah pada hari minggu. <br> Silahkan nikmati waktu liburmu yaa!</h3>
       </div>
     </div>
   </div>
 
   <div class="rfid">
     <input type="text" name="" class="input-rfid" autofocus>
-    <div class="tiban"></div>
+    <!-- <div class="tiban"></div> -->
   </div>
 </template>
 
@@ -261,9 +262,7 @@ header {
 }
 
 .isi {
-  display: flex;
-  justify-content: center;
-  margin-top: auto 100px;
+  text-align: center;
 }
 
 .isi2 {
@@ -314,7 +313,6 @@ import axios from 'axios';
 const kode_respon = ref()
 const hari = ref()
 const agendas = [];
-const siswa = ref([]);
 const user = ref([]);
 const message = ref();
 const role = ref();
@@ -369,7 +367,6 @@ onMounted(() => {
       if (kode_respon.value == 1) {
         if (response.data.siswa) {
           hari.value = response.data.hari;
-          siswa.value = response.data.siswa;
           role.value = 'siswa';
           kelas.value = response.data.kelas;
           kompetensi.value = response.data.kompetensi;
