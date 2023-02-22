@@ -1,28 +1,32 @@
 <template>
-  
+
   <header>
     <Header />
   </header>
 
   <div class="isi" v-if="!kode_respon && !show">
     <div class="foto">
-      <img src="@/assets/contactless-payment-credit-card-hand-tap-pay-wave-logo-vector-wireless-nfc-pass-icon-161259873-38930.png" alt="image" style="width: 500px;height: 500px;object-fit: cover;margin-top: 50px;">
+      <img
+        src="@/assets/contactless-payment-credit-card-hand-tap-pay-wave-logo-vector-wireless-nfc-pass-icon-161259873-38930.png"
+        alt="image" style="width: 500px;height: 500px;object-fit: cover;margin-top: 50px;">
     </div>
   </div>
-  
+
   <div class="container1 p-0 mt-5" v-if="kode_respon == 1 && show">
     <div class="isi">
       <div class="foto">
         <div v-if="siswa.profil">
-          <img :src="'http://127.0.0.1:8000' + siswa.profil" alt="image" 
-            style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;" v-if="siswa.profil == '/img/profil.png'">
-          <img :src="'http://127.0.0.1:8000/storage/' + siswa.profil" alt="image" 
+          <img :src="'https://absensi-dashboard.devlog.my.id/' + siswa.profil" alt="image"
+            style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;"
+            v-if="siswa.profil == '/img/profil.png'">
+          <img :src="'https://absensi-dashboard.devlog.my.id/storage/' + siswa.profil" alt="image"
             style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;" v-else>
         </div>
         <div v-if="user.profil">
-          <img :src="'http://127.0.0.1:8000' + user.profil" alt="image" 
-            style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;" v-if="user.profil == '/img/profil.png'">
-          <img :src="'http://127.0.0.1:8000/storage/' + user.profil" alt="image" 
+          <img :src="'https://absensi-dashboard.devlog.my.id/' + user.profil" alt="image"
+            style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;"
+            v-if="user.profil == '/img/profil.png'">
+          <img :src="'https://absensi-dashboard.devlog.my.id/storage/' + user.profil" alt="image"
             style="width: 300px;height: 300px;border-radius: 50%;object-fit: cover;" v-else>
         </div>
       </div>
@@ -60,7 +64,8 @@
         <tbody>
           <tr v-for="no in agendas.length">
             <td scope="row">{{ no }}</td>
-            <td>{{ agendas[no - 1].jam_awal.split(':')[0] }}:{{ agendas[no - 1].jam_awal.split(':')[1] }}-{{ agendas[no
+            <td>{{ agendas[no - 1].jam_awal.split(':')[0] }}:{{ agendas[no - 1].jam_awal.split(':')[1] }}-{{
+              agendas[no
                 - 1].jam_akhir.split(':')[0]
             }}:{{ agendas[no - 1].jam_akhir.split(':')[1] }}</td>
             <td>{{ agendas[no - 1].mapel }}</td>
@@ -91,7 +96,8 @@
           <tr v-for="no in agendas.length">
             <!-- {{ agendas[no - 1].jam_awal }} -->
             <td scope="row">{{ no }}</td>
-            <td>{{ agendas[no - 1].jam_awal.split(':')[0] }}:{{ agendas[no - 1].jam_awal.split(':')[1] }}-{{ agendas[no
+            <td>{{ agendas[no - 1].jam_awal.split(':')[0] }}:{{ agendas[no - 1].jam_awal.split(':')[1] }}-{{
+              agendas[no
                 - 1].jam_akhir.split(':')[0]
             }}:{{ agendas[no - 1].jam_akhir.split(':')[1] }}</td>
             <td>{{ agendas[no - 1].mapel }}</td>
@@ -118,7 +124,8 @@
           <tr v-for="no in agendas.length">
             <!-- {{ agendas[no - 1].jam_awal }} -->
             <td scope="row">{{ no }}</td>
-            <td>{{ agendas[no - 1].jam_awal.split(':')[0] }}:{{ agendas[no - 1].jam_awal.split(':')[1] }}-{{ agendas[no
+            <td>{{ agendas[no - 1].jam_awal.split(':')[0] }}:{{ agendas[no - 1].jam_awal.split(':')[1] }}-{{
+              agendas[no
                 - 1].jam_akhir.split(':')[0]
             }}:{{ agendas[no - 1].jam_akhir.split(':')[1] }}</td>
             <td>{{ agendas[no - 1].other }}</td>
@@ -128,105 +135,113 @@
     </div>
   </div>
 
-  <div class="container2 p-0 mt-5 container-pulang" :style="(kode_respon == 2 && show) ? 'display:block;' : 'display:none;'">
+  <div class="container2 p-0 mt-5 container-pulang"
+    :style="(kode_respon == 2 && show) ? 'display:block;' : 'display:none;'">
     <!-- v-if="kode_respon == 2" -->
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width:25rem; height:0; padding-bottom:30%; position:relative;">
         <video loop="true" autoplay="autoplay" class="gif-pulang" style="width: 100%;">
-            <source src="@/assets/hai.mp4" type="video/mp4">
-            <source src="@/assets/hai.ogg" type="video/ogg">
+          <source src="@/assets/hai.mp4" type="video/mp4">
+          <source src="@/assets/hai.ogg" type="video/ogg">
         </video>
         <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Hati-hati di jalan!</h3>
       </div>
     </div>
   </div>
-  
-  <div class="container2 p-0 mt-5" :style="(kode_respon == 3 && show) ? 'display:block;' : 'display:none;'" >
+
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 3 && show) ? 'display:block;' : 'display:none;'">
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width: 25rem;">
         <video loop="true" autoplay="autoplay" class="gif-angry" style="width: 100%;">
-              <source src="@/assets/angry.mp4" type="video/mp4">
-              <source src="@/assets/angry.ogg" type="video/ogg">
-          </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Kamu sudah absen masuk ataupun pulang, jangan iseng tapping terus menerus yaa!!!</h3>
+          <source src="@/assets/angry.mp4" type="video/mp4">
+          <source src="@/assets/angry.ogg" type="video/ogg">
+        </video>
+        <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Kamu sudah absen masuk ataupun pulang, jangan iseng
+          tapping terus menerus yaa!!!</h3>
       </div>
     </div>
   </div>
 
-  <div class="container2 p-0 mt-5" :style="(kode_respon == 4 && show) ? 'display:block;' : 'display:none;'" >
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 4 && show) ? 'display:block;' : 'display:none;'">
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width: 25rem;">
         <video loop="true" autoplay="autoplay" class="gif-telat" style="width: 100%;">
-              <source src="@/assets/telat.mp4" type="video/mp4">
-              <source src="@/assets/telat.ogg" type="video/ogg">
-          </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kamu terlambat. Silahkan lapor ke guru piket untuk data absensi kamu hari ini. Jangan terlambat lagi lain kali yaa!</h3>
+          <source src="@/assets/telat.mp4" type="video/mp4">
+          <source src="@/assets/telat.ogg" type="video/ogg">
+        </video>
+        <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kamu terlambat. Silahkan lapor ke guru piket
+          untuk data absensi kamu hari ini. Jangan terlambat lagi lain kali yaa!</h3>
       </div>
     </div>
   </div>
 
-  <div class="container2 p-0 mt-5" :style="(kode_respon == 5 && show) ? 'display:block;' : 'display:none;'" >
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 5 && show) ? 'display:block;' : 'display:none;'">
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width: 25rem;">
         <video loop="true" autoplay="autoplay" class="gif-belumPulang" style="width: 100%;">
-              <source src="@/assets/belumPulang.mp4" type="video/mp4">
-              <source src="@/assets/belumPulang.ogg" type="video/ogg">
-          </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Sekarang belum waktunya pulang, silahkan tetap berada di area sekolah sampai waktu pulang tiba yaa!</h3>
+          <source src="@/assets/belumPulang.mp4" type="video/mp4">
+          <source src="@/assets/belumPulang.ogg" type="video/ogg">
+        </video>
+        <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Sekarang belum waktunya pulang, silahkan tetap
+          berada di area sekolah sampai waktu pulang tiba yaa!</h3>
       </div>
     </div>
   </div>
 
-  <div class="container2 p-0 mt-5" :style="(kode_respon == 6 && show) ? 'display:block;' : 'display:none;'" >
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 6 && show) ? 'display:block;' : 'display:none;'">
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width: 25rem;">
         <video loop="true" autoplay="autoplay" class="gif-waktu-presensi" style="width: 100%;">
-              <source src="@/assets/telat.mp4" type="video/mp4">
-              <source src="@/assets/telat.ogg" type="video/ogg">
-          </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, agenda tidak tersedia. Silahkan lapor ke guru piket.</h3>
+          <source src="@/assets/telat.mp4" type="video/mp4">
+          <source src="@/assets/telat.ogg" type="video/ogg">
+        </video>
+        <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, agenda tidak tersedia. Silahkan lapor ke guru
+          piket.</h3>
       </div>
     </div>
   </div>
 
-  <div class="container2 p-0 mt-5" :style="(kode_respon == 7 && show) ? 'display:block;' : 'display:none;'" >
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 7 && show) ? 'display:block;' : 'display:none;'">
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width: 25rem;">
         <video loop="true" autoplay="autoplay" class="gif-rfid-nonaktif" style="width: 100%;">
-              <source src="@/assets/telat.mp4" type="video/mp4">
-              <source src="@/assets/telat.ogg" type="video/ogg">
-          </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi anda tidak aktif. Silahkan lapor ke guru piket.</h3>
+          <source src="@/assets/telat.mp4" type="video/mp4">
+          <source src="@/assets/telat.ogg" type="video/ogg">
+        </video>
+        <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi anda tidak aktif. Silahkan lapor
+          ke guru piket.</h3>
       </div>
     </div>
   </div>
 
-  <div class="container2 p-0 mt-5" :style="(kode_respon == 8 && show) ? 'display:block;' : 'display:none;'" >
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 8 && show) ? 'display:block;' : 'display:none;'">
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width: 25rem;">
         <video loop="true" autoplay="autoplay" class="gif-rfid-notFound" style="width: 100%;">
-              <source src="@/assets/telat.mp4" type="video/mp4">
-              <source src="@/assets/telat.ogg" type="video/ogg">
-          </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi tidak ditemukan. Silahkan lapor ke guru piket.</h3>
+          <source src="@/assets/telat.mp4" type="video/mp4">
+          <source src="@/assets/telat.ogg" type="video/ogg">
+        </video>
+        <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Maaf, kartu absensi tidak ditemukan. Silahkan lapor
+          ke guru piket.</h3>
       </div>
     </div>
   </div>
 
-  <div class="container2 p-0 mt-5" :style="(kode_respon == 9 && show) ? 'display:block;' : 'display:none;'" >
+  <div class="container2 p-0 mt-5" :style="(kode_respon == 9 && show) ? 'display:block;' : 'display:none;'">
     <div class="container" style="min-width: 70vw; display: flex; justify-content: center; margin-top: 100px;">
       <div style="width: 25rem;">
         <video loop="true" autoplay="autoplay" class="gif-rfid-nonaktif" style="width: 100%;">
-              <source src="@/assets/telat.mp4" type="video/mp4">
-              <source src="@/assets/telat.ogg" type="video/ogg">
-          </video>
-          <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Tidak ada kegiatan disekolah pada hari minggu. Silahkan nikmati waktu liburmu yaa!</h3>
+          <source src="@/assets/telat.mp4" type="video/mp4">
+          <source src="@/assets/telat.ogg" type="video/ogg">
+        </video>
+        <h3 class="text-center text-pulang-h3-nih" id="text-pulang">Tidak ada kegiatan disekolah pada hari minggu.
+          Silahkan nikmati waktu liburmu yaa!</h3>
       </div>
     </div>
   </div>
 
+  <input type="text" name="" class="input-rfid" autofocus>
   <div class="rfid">
-    <input type="text" name="" class="input-rfid" autofocus>
     <div class="tiban"></div>
   </div>
 </template>
@@ -329,7 +344,7 @@ const hitungDetik = function () {
     show.value = false;
     detik = 0;
     kode_respon.value = '';
-  } else if(detik <= 15 && show.value) {
+  } else if (detik <= 15 && show.value) {
     setTimeout(() => {
       hitungDetik();
     }, 1000);
@@ -340,22 +355,22 @@ onMounted(() => {
   // kode_respon.value = 2;
   // show.value = true
   // console.log(document.querySelector('#text-pulang'))
- 
+
   const inputRfid = document.querySelector('.input-rfid');
   inputRfid.addEventListener('change', function (e) {
     if (detik <= 15) {
-        detik = 0;
-        show.value = false;
-        fetch(e);
-      }else{
-        fetch(e);
-      }
+      detik = 0;
+      show.value = false;
+      fetch(e);
+    } else {
+      fetch(e);
+    }
   })
 
-  const fetch = function(e){
-  axios.post('http://127.0.0.1:8000/api/absen', {
+  const fetch = function (e) {
+    axios.post('http://localhost:8000/api/absen', {
       rfid: e.target.value
-    }).then((response) => { 
+    }).then((response) => {
       console.log(response)
       if (!show.value) {
         show.value = true;
@@ -363,9 +378,9 @@ onMounted(() => {
       }
       kode_respon.value = response.data.kode_respon
       message.value = response.data.message
-      
+
       // data user
-      
+
       if (kode_respon.value == 1) {
         if (response.data.siswa) {
           hari.value = response.data.hari;
@@ -393,28 +408,28 @@ onMounted(() => {
           }
           user.value = response.data.user;
         }
-      }else if(kode_respon.value == 2){
+      } else if (kode_respon.value == 2) {
         const textPulang = document.querySelector('.text-pulang-h3-nih');
         textPulang.innerHTML = 'Hati hati dijalan ' + response.data.user.name;
         document.querySelector('.gif-pulang').play();
-      }else if(kode_respon.value == 3){
+      } else if (kode_respon.value == 3) {
         document.querySelector('.gif-angry').play();
-      }else if(kode_respon.value == 4){
+      } else if (kode_respon.value == 4) {
         document.querySelector('.gif-telat').play();
-      }else if(kode_respon.value == 5){
+      } else if (kode_respon.value == 5) {
         document.querySelector('.gif-belumPulang').play();
-      }else if(kode_respon.value == 6){
+      } else if (kode_respon.value == 6) {
         document.querySelector('.gif-waktu-presensi').play();
-      }else if(kode_respon.value == 7){
+      } else if (kode_respon.value == 7) {
         document.querySelector('.gif-rfid-nonaktif').play();
-      }else if(kode_respon.value == 8){
+      } else if (kode_respon.value == 8) {
         document.querySelector('.gif-rfid-notFound').play();
-      }else if(kode_respon.value == 9){
+      } else if (kode_respon.value == 9) {
         document.querySelector('.gif-rfid-nonaktif').play();
       }
-      
+
       inputRfid.value = '';
     })
-} 
+  }
 })
 </script>
